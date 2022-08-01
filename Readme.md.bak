@@ -1,0 +1,7 @@
+#ASP.NET Core Code Quality in Azure DevOps Pipelines
+
+##Static Code Analysis
+- Create a new ASP.NET Core 6 Web Application.
+- To run code analysis in VisualStudio 2022. 
+  - Analyze > RunCode Analysis > On Solution
+- 
