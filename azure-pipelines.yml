@@ -38,8 +38,16 @@ steps:
     projectName: 'CodeQuality'
 
 - task: DotNetCoreCLI@2
-  displayName: 'Run Unit Tests'
+  displayName: 'Unit Tests and Code Coverage'
   inputs:
     command: 'test'
     projects: '**/*Tests/*.csproj'
-    arguments: '--configuration $(buildConfiguration)'
+    arguments: '/p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=./MyCoverage/'
+    publishTestResults: true
+
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publish Code Coverage Results'
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: '$(Build.SourcesDirectory)/**/MyCoverage/coverage.cobertura.xml'
+    failIfCoverageEmpty: true
