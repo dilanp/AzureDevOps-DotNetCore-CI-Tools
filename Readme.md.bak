@@ -24,7 +24,7 @@
 - Search and find the tool. Then, install it for the organization.
 - Activate the plugin by visiting: Organization Settings > Mend.
 - Add the WhiteSource Bolt task to the yaml file.
-- Now, select a particular pipeline run and notice the "Mend Bolt" tab placed next to the "Summary" tab.
+- Now, select a particular pipeline run and notice the "Mend Bolt" tab alongside the "Summary" tab.
 - In some plugins we'll have to go and add a task to the pipeline yaml file to get it enabled.
 
 ## Unit tests
@@ -34,10 +34,27 @@
 - Add a test classes and add test methods as required.
 - Update the pipeline yaml file and add a new step to run unit tests and save it.
 - Push the newly added unit test changes to GitHub and monitor pipeline job to see how unit tests are run.
-- Also, notice the "Test" tab placed next to the "Summary" tab. This should give unit test run results.
+- Also, notice the "Test" tab placed alongside the "Summary" tab. This should give unit test run results.
 
 ## Code coverage
 - Install coverlet.msbuild (v3.1.2) Nuget package in the unit test project.
 - Update unit tests step in the pipeline yaml file to introduce code coverage arguments.
 - Add a new step to the pipeline yaml file after unit tests step to publish code coverage results.
-- 
+- Save pipeline yaml file and push changes in the VisualStudio test project.
+- Once build pipeline comples successfully, notice the "Code Coverage" tab placed alongside the "Summary" tab.
+- Analyse the code coverage details by clicking on the tab.
+
+## Code quality & security with SonarCloud
+- Visit sonarcloud.io and login using the Azure DevOps account. Provide required permissions.
+- Import the current Azure DevOps organization to SonarCloud.
+- Select the required project in the organization.
+- Visit: Organization Settings > Extensions > Browse Marketplace.
+- Search and find "SonarCloud" and install it for the organization.
+- Visit Project Settings > Service connections and add service connection using the SonarCloud token.
+- Add SonarCloud "Prepare Analysis Configuration" task just before the MSBuild task.
+- Add SonarCloud "Run Code Analysis" task just after the MSBuild task.
+- Add SonarCloud "Publish Quality Gate Result" task just after the "Run Code Analysis" task.
+- Save & run the pipeline yaml file changes.
+- Once the pipeline is completed, refresh the project dashboard page on SonarCloud.
+- SonarCloud can give us valueable insights about the technical debt in our code base.
+
