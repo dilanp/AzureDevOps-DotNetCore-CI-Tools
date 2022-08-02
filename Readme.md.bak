@@ -1,8 +1,8 @@
 # ASP.NET Core Code Quality in Azure DevOps Pipelines
-
-## Static Code Analysis
 - Create a new ASP.NET Core 6 Web Application.
 - Add new code into a GitHub repository.
+
+## Static Code Analysis
 - To run code analysis in VisualStudio 2022. 
   - Analyze > RunCode Analysis > On Solution
   - Check the "Error List" window for errors, warnings and messages.
@@ -20,9 +20,10 @@
   
 ## Detect & fix open source package vulnerabilities
 - There are tools available on VisualStudio marketplace for this purpose such as, Mend Bolt (formerly, WhiteSource Bolt).
-- First, visit Organization Settings > Extensions > Browse Marketplace.
+- First, visit: Organization Settings > Extensions > Browse Marketplace.
 - Search and find the tool. Then, install it for the organization.
-- Activate the plugin by visiting Settings > Mend.
+- Activate the plugin by visiting: Organization Settings > Mend.
+- Add the WhiteSource Bolt task to the yaml file.
 - Now, select a particular pipeline run and notice the "Mend Bolt" tab placed next to the "Summary" tab.
 - In some plugins we'll have to go and add a task to the pipeline yaml file to get it enabled.
 
@@ -34,3 +35,9 @@
 - Update the pipeline yaml file and add a new step to run unit tests and save it.
 - Push the newly added unit test changes to GitHub and monitor pipeline job to see how unit tests are run.
 - Also, notice the "Test" tab placed next to the "Summary" tab. This should give unit test run results.
+
+## Code coverage
+- Install coverlet.msbuild (v3.1.2) Nuget package in the unit test project.
+- Update unit tests step in the pipeline yaml file to introduce code coverage arguments.
+- Add a new step to the pipeline yaml file after unit tests step to publish code coverage results.
+- 
