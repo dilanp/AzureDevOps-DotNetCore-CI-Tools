@@ -29,7 +29,7 @@ steps:
     SonarCloud: 'SonarCloud-CodeQuality-DotNetCore'
     organization: 'udfperera'
     scannerMode: 'MSBuild'
-    projectKey: 'CodeQuality-DotNetCore' # Simply the name of project @SonarCloud
+    projectKey: 'udfperera_CodeQuality-DotNetCore'
     projectName: 'CodeQuality-DotNetCore'
 
 - task: VSBuild@1
