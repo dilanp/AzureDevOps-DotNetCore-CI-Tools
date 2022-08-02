@@ -31,4 +31,5 @@
 - Add XUnit (v2.4.2) Nuget package for the test project.
 - Add a reference to the CodeQuality project.
 - Add a test classes and add test methods as required.
-- Add a 
+- Update the pipeline yaml file and add a new step to run unit tests and save it.
+- Push the newly added unit test changes to GitHub and monitor pipeline.

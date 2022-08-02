@@ -11,7 +11,7 @@ namespace UnitTests
             var customer = new Customer(1, "Mark");
 
             Assert.Equal(1, customer.Id);
-            Assert.Equal("Mark", customer.Name);
+            Assert.Equal("Mark2", customer.Name);
         }
     }
 }
