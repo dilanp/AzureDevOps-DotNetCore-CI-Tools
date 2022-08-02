@@ -16,23 +16,29 @@ variables:
 
 steps:
 - task: NuGetToolInstaller@1
-  name: InstallNuget
+  displayName: 'Install Nuget'
 
 - task: NuGetCommand@2
-  name: NugetRestore
+  displayName: 'Nuget Restore'
   inputs:
     restoreSolution: '$(solution)'
 
 - task: VSBuild@1
-  name: MSBuild
+  displayName: 'Perform MSBuild'
   inputs:
     solution: '$(solution)'
     msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
+- task: WhiteSource@21
+  displayName: 'WhiteSource Bolt'
+  inputs:
+    cwd: '$(System.DefaultWorkingDirectory)'
+    projectName: 'CodeQuality'
+
 - task: DotNetCoreCLI@2
-  name: UnitTests
+  displayName: 'Run Unit Tests'
   inputs:
     command: 'test'
     projects: '**/*Tests/*.csproj'
